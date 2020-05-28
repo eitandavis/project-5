@@ -1,4 +1,5 @@
 //jshint esversion: 6
+
 // Adds endpoint for HTTP Post request
 
 // initialize
