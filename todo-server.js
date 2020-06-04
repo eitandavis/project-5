@@ -107,7 +107,7 @@ app.post('/deletetodo/:data', (req, res) => {
 
   return res.status(200).send({
     status_code: 200,
-    message: "comment deleted",
+    message: "to do deleted",
   });
 });
 
