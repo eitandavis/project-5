@@ -14,7 +14,7 @@ let controller = function() {
     });
   });
 
-  let addCommentFromInputBox = function() {
+  let addToDoFromInputBox = function() {
     //Semmy uses "$" to name variables that will contain jQuery objects
     let $new_todo, content;
 
@@ -26,7 +26,7 @@ let controller = function() {
       //$new_todo.fadeIn();
       $(".comment-input input").val("");
 
-      //add comment to db
+      //add to do to db
       $.ajax({
           method: "POST",
           url: "http://localhost:8888/addtodo",
@@ -41,17 +41,17 @@ let controller = function() {
   };
 
   $(".comment-input button").on("click", function(event) {
-    addCommentFromInputBox();
+    addToDoFromInputBox();
   });
 
   $(".comment-input input").on("keypress", function(event) {
     if (event.keyCode === 13) {
-      addCommentFromInputBox();
+      addToDoFromInputBox();
     }
   });
 };
 
-let deleteComment = () => {
+let deleteToDo = () => {
   //delete a comment from db
   let content = $("#deleteOne").val();
   $.ajax({
@@ -59,13 +59,13 @@ let deleteComment = () => {
       url: "http://localhost:8888/deletecomment/" + content
     })
     .done(function(msg) {
-      console.log("Comment deleted: " + msg);
+      console.log("To Do deleted: " + msg);
     });
 
   window.location.reload();
 };
 
-let getComment = () => {
+let getToDo = () => {
   //clear outDiv
   $("#outDiv").html("");
   let pElem;
@@ -76,8 +76,8 @@ let getComment = () => {
       url: "http://localhost:8888/getcomment/" + content
     })
     .done(function(msg) {
-      console.log("Comment retrieved: " + msg.message.data);
-      pElem = $("<p>").html("Comment Retrieved: " + msg.message.data);
+      console.log("To Do retrieved: " + msg.message.data);
+      pElem = $("<p>").html("To Do Retrieved: " + msg.message.data);
       $("#outDiv").append(pElem);
     });
 
@@ -97,8 +97,8 @@ $(document).ready(() => {
   btn03 = document.querySelectorAll('button')[3];
   btn03.addEventListener('click', deleteAll);
   btn02 = document.querySelectorAll('button')[2];
-  btn02.addEventListener('click', deleteComment);
+  btn02.addEventListener('click', deleteToDo);
   btn01 = document.querySelectorAll('button')[1];
-  btn01.addEventListener('click', getComment);
+  btn01.addEventListener('click', getToDo);
   controller();
 });
