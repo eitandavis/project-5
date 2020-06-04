@@ -57,7 +57,7 @@ app.get('/todos', (req, res) => {
   });
 });
 
-//endpoint to get a single todo
+//endpoint to get a single to do
 app.get('/todo/:data', (req, res, next) => {
   const data = req.params.data;
 
@@ -93,7 +93,7 @@ app.post('/addtodo', (req, res) => {
     .catch(error => console.error(error));
 });
 
-//Endpoint to Delete a single comment
+//Endpoint to Delete a single to do
 app.post('/deletetodo/:data', (req, res) => {
   const data = req.params.data;
   console.log(data);
